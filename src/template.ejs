@@ -1,0 +1,6 @@
+const { Given, When, Then } = require('cypress-cucumber-preprocessor');
+
+<% steps.forEach( step => { -%>
+<%- step.snippet %>
+
+<% } ); %>
