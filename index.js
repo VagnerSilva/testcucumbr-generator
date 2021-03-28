@@ -21,7 +21,9 @@ const config = require(requireFile);
 
 const output = (snippetData) => {
     if (typeof snippetData === "undefined") return;
-    const format = config.formatFile ? `.${config.formatFile}` : ".js";
+    const format = config.formatFile
+        ? `_spec.${config.formatFile}`
+        : "_spec.js";
 
     const snippetsByFile = snippetData.reduce((steps, step) => {
         const uri = step.uri;

@@ -1,6 +1,6 @@
 {
   "name": "testcucumbr-generator",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Cucumber step generator",
   "main": "index.js",
   "bin": {
@@ -29,7 +29,8 @@
     "features",
     "feature",
     "testing",
-    "testcucumbr-generator"
+    "testcucumbr-generator",
+    "multiple languages"
   ],
   "author": "Vagner Silva",
   "license": "MIT",
