@@ -1,6 +1,12 @@
 # testcucumbr-generator
 
-Generates steps for **[cypress-cucumber-preprocessor](https://github.com/TheBrainFamily/cypress-cucumber-preprocessor/blob/master/README.md)** and **[@cucumber/cucumber](https://github.com/cucumber/cucumber-js/blob/master/README.md)**
+
+Generates steps in multiple [languages](https://cucumber.io/docs/gherkin/languages/) for **[cypress-cucumber-preprocessor](https://github.com/TheBrainFamily/cypress-cucumber-preprocessor/blob/master/README.md)** and **[@cucumber/cucumber](https://github.com/cucumber/cucumber-js/blob/master/README.md)**
+
+The `testcucumbr-generator` basically will lookup for all features in given diretory and generator `_spec.js` or `_spec.ts` files acordingly. 
+It also includes new steps without changing or deleting previously entered steps.
+
+
 
 # Installation
 
@@ -18,10 +24,10 @@ Create the **testcucumbr.conf.js** file at the root of the project.
 
 | Option         | Default value | Description                                                                                                              | type     |
 | -------------- | ------------- | ------------------------------------------------------------------------------------------------------------------------ | -------- |
-| featurePath    | -             | Define the path to a folder containing all **'.features'** files                                                         | required |
+| featurePath    | -             | Define the path to a folder containing all **`.features`** files                                                         | **required** |
 | defaultDialect | **en**        | Define the default language used. You can see more languages ​​in [gherkin](https://cucumber.io/docs/gherkin/languages/) | optional |
-| type           | **cypress**   | Define the model type. **'cypress'** or **'cucumber'**                                                                   | optional |
-| formatFile     | **js**        | Define the format file. **'js'** or **'ts'**                                                                             | optional |
+| type           | **cypress**   | Define the model type. **`'cypress'`** or **`'cucumber'`**                                                                   | optional |
+| formatFile     | **js**        | Define the format file. **`'js'`** or **`'ts'`**                                                                             | optional |
 
 # Examples
 
