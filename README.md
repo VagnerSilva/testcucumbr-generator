@@ -31,7 +31,7 @@ Create the **testcucumbr.conf.js** file at the root of the project.
 module.exports = {
     type: "cypress",
     formatFile: "js",
-    featurePaths: "./crypress/integration/features",
+    featurePath: "./crypress/integration/features",
     defaultDialect: "pt",
 };
 ```
