@@ -12,7 +12,7 @@ const loadSupportCodePaths = async (supportCodePaths) => {
 
                         const file = data.toString();
                         const dataReplace = file.replace(
-                            "cypress-cucumber-preprocessor",
+                            "cypress-cucumber-preprocessor/steps",
                             "@cucumber/cucumber"
                         );
 
