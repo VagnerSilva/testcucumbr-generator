@@ -57,7 +57,7 @@ Execute the command
 **.\node_modules\\.bin\testcucumbr**
 
 ```javascript
-const { Given, When, Then } = require("cypress-cucumber-preprocessor");
+const { Given, When, Then } = require("cypress-cucumber-preprocessor/steps");
 
 Given("que um navegador da web está na página do Google", function () {
     // Write code here that turns the phrase above into concrete actions
