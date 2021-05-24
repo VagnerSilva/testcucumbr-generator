@@ -64,8 +64,7 @@ async function Generator() {
      *  default {*.feature, *.features,!(node_modules)}
      */
     const featurePaths = await new Promise((resolve, reject) => {
-        const featureSearch =
-            "{*.feature, *.features,!(node_modules)/**/*.feature}";
+        const featureSearch = `${config.featurePath}/{*.feature, *.features,!(node_modules)/**/*.feature}`;
         glob(featureSearch, (error, matches) => {
             if (error) reject(error);
             resolve(matches);

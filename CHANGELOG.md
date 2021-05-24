@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.0.4] 2021-03-22
+
+### Changed
+
+Fix - Error: EISDIR: illegal operation on a directory, read
+
 ## [1.0.31] 2021-03-22
 
 ### Changed
