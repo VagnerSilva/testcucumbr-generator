@@ -1,6 +1,16 @@
 # Changelog
 
-## [1.0.5] 2021-06-21
+## [1.0.6] 2021-06-03
+
+Add - 'arrow' property in config file to use arrow functions as default
+
+### Changed
+
+Fix - regex escape
+
+# Changelog
+
+## [1.0.5] 2021-06-03
 
 ### Changed
 

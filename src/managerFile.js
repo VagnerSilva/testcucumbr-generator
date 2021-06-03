@@ -1,13 +1,16 @@
-const ejs = require("ejs");
-const { dirname } = require("path");
+const ejs = require('ejs');
+const { dirname, resolve } = require('path');
 const {
     createReadStream,
     readFileSync,
     existsSync,
     mkdirSync,
     writeFileSync,
-} = require("fs");
-const insertLine = require("insert-line");
+} = require('fs');
+const insertLine = require('insert-line');
+const dir = process.cwd();
+const requireFile = `${resolve(dir, 'testcucumbr.conf')}`;
+const config = require(requireFile);
 
 /**
  * Add new step by position
@@ -18,9 +21,9 @@ const insertLine = require("insert-line");
  */
 function addStep(src, step, position) {
     insertLine(src)
-        .contentSync("\n" + step.snippet + "\n")
+        .contentSync('\n' + step.snippet + '\n')
         .at(position);
-    readFileSync(src, "utf8");
+    readFileSync(src, 'utf8');
 }
 
 /**
@@ -33,19 +36,19 @@ function addStep(src, step, position) {
  * @return {Promise}
  */
 async function insert(src, steps) {
-    if (typeof src !== "string" || src === null) {
-        reject("src parameter must be a string");
+    if (typeof src !== 'string' || src === null) {
+        reject('src parameter must be a string');
     }
 
-    if (typeof steps !== "object" || steps === null) {
-        reject("steps parameter must be a step object");
+    if (typeof steps !== 'object' || steps === null) {
+        reject('steps parameter must be a step object');
     }
 
     if (Object.keys(steps).length === 0) return;
     const data = await getData(src);
     const lines = data.split(/\r?\n/);
-    let line = "";
-    let step = "";
+    let line = '';
+    let step = '';
     let lineCount = 0;
     let counter = 0;
 
@@ -80,7 +83,7 @@ async function insert(src, steps) {
  */
 function isEndFunc(line) {
     const END_FUNC = /(^(!^\s+)?(}\);))/;
-    const regexLine = new RegExp(END_FUNC, "gim");
+    const regexLine = new RegExp(END_FUNC, 'gim');
     const result = line.match(regexLine);
     return result ? true : false;
 }
@@ -119,11 +122,11 @@ function getData(src) {
         let scenarios;
         const readL = createReadStream(src);
         readL
-            .on("data", (data) => {
+            .on('data', (data) => {
                 scenarios = data;
             })
-            .on("close", () => resolve(scenarios.toString()))
-            .on("error", (err) => reject(err));
+            .on('close', () => resolve(scenarios.toString()))
+            .on('error', (err) => reject(err));
     });
 }
 
@@ -146,20 +149,34 @@ function update(destSrc, scenario) {
 function copy(templateFile, destSrc, steps) {
     const dir = dirname(destSrc);
     const tmp = readFileSync(templateFile);
+
+    steps = config && config.arrow ? convertArrow(steps) : steps;
     const result = ejs.render(tmp.toString(), steps, {
         filename: templateFile,
     });
 
     if (!existsSync(destSrc)) {
         mkdirSync(dir, { recursive: true });
-        writeFileSync(destSrc, result, { encoding: "utf-8" });
+        writeFileSync(destSrc, result, { encoding: 'utf-8' });
         return;
     }
 
     const file = readFileSync(destSrc);
     file.length === 0
-        ? writeFileSync(destSrc, result, { encoding: "utf-8" })
+        ? writeFileSync(destSrc, result, { encoding: 'utf-8' })
         : update(destSrc, steps);
+}
+
+function convertArrow(data) {
+    const removeFunc = new RegExp(/(?!\'|\"),\sfunction/, 'gim');
+    const addArrow = new RegExp(/(?<=\))[\s](?=\{)/, 'gim');
+
+    for (let index = 0; index < data.steps.length; index++) {
+        data.steps[index].snippet = data.steps[index].snippet
+            .replace(removeFunc, ',')
+            .replace(addArrow, ' => ');
+    }
+    return data;
 }
 
 module.exports = {
