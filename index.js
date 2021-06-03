@@ -1,7 +1,7 @@
-const { resolve, join, dirname } = require("path");
-const { loadSupportCodePaths } = require("./src/loadPaths");
-const glob = require("glob");
-const { EventEmitter } = require("events");
+const { resolve, join, dirname } = require('path');
+const { loadSupportCodePaths } = require('./src/loadPaths');
+const glob = require('glob');
+const { EventEmitter } = require('events');
 const {
     Runtime,
     formatterHelpers,
@@ -10,24 +10,24 @@ const {
     supportCodeLibraryBuilder,
     Cli,
     PickleFilter,
-} = require("@cucumber/cucumber");
-const gherkin = require("gherkin").default;
-const { IdGenerator } = require("@cucumber/messages");
-const fs = require("./src/managerFile");
+} = require('@cucumber/cucumber');
+const gherkin = require('gherkin').default;
+const { IdGenerator } = require('@cucumber/messages');
+const fs = require('./src/managerFile');
 
 const dir = process.cwd();
-const requireFile = `${resolve(dir, "testcucumbr.conf")}`;
+const requireFile = `${resolve(dir, 'testcucumbr.conf')}`;
 const config = require(requireFile);
 
 const output = (snippetData) => {
-    if (typeof snippetData === "undefined") return;
+    if (typeof snippetData === 'undefined') return;
     const format = config.formatFile
         ? `_spec.${config.formatFile}`
-        : "_spec.js";
+        : '_spec.js';
 
     const snippetsByFile = snippetData.reduce((steps, step) => {
         const uri = step.uri;
-        if (typeof steps[uri] === "undefined") steps[uri] = [];
+        if (typeof steps[uri] === 'undefined') steps[uri] = [];
 
         steps[uri].push(step);
 
@@ -35,15 +35,16 @@ const output = (snippetData) => {
     }, {});
 
     for (const file in snippetsByFile) {
-        const folderRegex = new RegExp(/(.+)(?=\.feature)/, "gmi");
-        const fileRegex = new RegExp(/[^\\]*(?=\.feature)/, "gim");
+        const folderRegex = new RegExp(/(.+)(?=\.feature)/, 'gim');
+        const fileRegex = new RegExp(/[^\\]*(?=\.feature)/, 'gim');
         const folder = join(process.cwd(), file.match(folderRegex)[0]);
-        const filename = file.match(fileRegex)[0] + `_steps${format}`;
+        const filename =
+            file.replace(/(\/)/g, '\\').match(fileRegex)[0] + `_steps${format}`;
         const destSrc = join(folder, filename);
         const template =
-            config.type.toLowerCase() === "cypress"
-                ? __dirname + "/src/template.ejs"
-                : __dirname + "/src/template-c.ejs";
+            config.type.toLowerCase() === 'cypress'
+                ? __dirname + '/src/template.ejs'
+                : __dirname + '/src/template-c.ejs';
 
         fs.copy(template, destSrc, {
             steps: snippetsByFile[file],
@@ -87,7 +88,7 @@ async function Generator() {
 
     const gherkinMessageStream = gherkin.fromPaths(featurePaths, {
         newId,
-        defaultDialect: config.defaultDialect ? config.defaultDialect : "en",
+        defaultDialect: config.defaultDialect ? config.defaultDialect : 'en',
         includePickles: true,
         includeGherkinDocument: true,
         includeSource: true,
@@ -98,7 +99,7 @@ async function Generator() {
         eventBroadcaster,
         eventDataCollector,
         gherkinMessageStream,
-        order: "defined",
+        order: 'defined',
         pickleFilter: new PickleFilter({
             cwd: dir,
             featurePaths: featurePaths,
@@ -118,7 +119,7 @@ async function Generator() {
     };
 
     FormatterBuilder.build(
-        __dirname + "/src/snippetFormat.js",
+        __dirname + '/src/snippetFormat.js',
         formatterOptions
     );
 

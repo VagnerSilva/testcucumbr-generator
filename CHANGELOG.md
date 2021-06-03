@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.0.5] 2021-06-21
+
+### Changed
+
+Fix - regex escape
+
+# Changelog
+
 ## [1.0.4] 2021-03-22
 
 ### Changed
@@ -23,6 +31,7 @@ required("cypress-cucumber-preprocessor") to required"cypress-cucumber-preproces
 ### Changed
 
 add .gitignore
+
 ## [1.0.1] 2021-03-28
 
 ### Changed
