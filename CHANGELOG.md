@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.0.7] 2021-06-09
+
+Fix - nx - create or verify new steps
+
+# Changelog
+
 ## [1.0.6] 2021-06-03
 
 Add - 'arrow' property in config file to use arrow functions as default

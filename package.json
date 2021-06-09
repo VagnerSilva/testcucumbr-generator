@@ -1,6 +1,6 @@
 {
   "name": "testcucumbr-generator",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Cucumber step generator",
   "main": "index.js",
   "bin": {
@@ -9,14 +9,13 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-    "dependencies": {
+  "dependencies": {
     "@cucumber/cucumber": "^7.0.0",
     "@cucumber/messages": "^14.0.1",
     "ejs": "^3.1.6",
     "gherkin": "^9.0.0",
     "glob": "^7.1.6",
-    "insert-line": "^1.1.0",
-    "require-from-memory": "^1.0.2"
+    "insert-line": "^1.1.0"
   },
   "repository": {
     "type": "git",
