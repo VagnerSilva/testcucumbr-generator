@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.0.8] 2021-06-09
+
+Add support cucumber 7.3.1
+
+# Changelog
+
 ## [1.0.7] 2021-06-09
 
 Fix - nx - create or verify new steps

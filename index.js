@@ -94,7 +94,7 @@ async function Generator() {
         includeSource: true,
     });
 
-    const pickleIds = parseGherkinMessageStream({
+    const pickleIds = await parseGherkinMessageStream({
         cwd: dir,
         eventBroadcaster,
         eventDataCollector,

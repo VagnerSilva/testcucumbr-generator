@@ -1,40 +1,40 @@
 {
-  "name": "testcucumbr-generator",
-  "version": "1.0.7",
-  "description": "Cucumber step generator",
-  "main": "index.js",
-  "bin": {
-    "testcucumbr": "./bin/testcucumbr-js"
-  },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "dependencies": {
-    "@cucumber/cucumber": "^7.0.0",
-    "@cucumber/messages": "^14.0.1",
-    "ejs": "^3.1.6",
-    "gherkin": "^9.0.0",
-    "glob": "^7.1.6",
-    "insert-line": "^1.1.0"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/VagnerSilva/testcucumbr-generator.git"
-  },
-  "keywords": [
-    "cucumber",
-    "cypress",
-    "BDD",
-    "features",
-    "feature",
-    "testing",
-    "testcucumbr-generator",
-    "multiple languages"
-  ],
-  "author": "Vagner Silva",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/VagnerSilva/testcucumbr-generator/issues"
-  },
-  "homepage": "https://github.com/VagnerSilva/testcucumbr-generator#readme"
+    "name": "testcucumbr-generator",
+    "version": "1.0.8",
+    "description": "Cucumber step generator",
+    "main": "index.js",
+    "bin": {
+        "testcucumbr": "./bin/testcucumbr-js"
+    },
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "dependencies": {
+        "@cucumber/cucumber": "^7.3.1",
+        "@cucumber/messages": "^14.0.1",
+        "ejs": "^3.1.6",
+        "gherkin": "^9.0.0",
+        "glob": "^7.1.6",
+        "insert-line": "^1.1.0"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/VagnerSilva/testcucumbr-generator.git"
+    },
+    "keywords": [
+        "cucumber",
+        "cypress",
+        "BDD",
+        "features",
+        "feature",
+        "testing",
+        "testcucumbr-generator",
+        "multiple languages"
+    ],
+    "author": "Vagner Silva",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/VagnerSilva/testcucumbr-generator/issues"
+    },
+    "homepage": "https://github.com/VagnerSilva/testcucumbr-generator#readme"
 }
